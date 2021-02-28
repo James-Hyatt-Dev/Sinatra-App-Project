@@ -1,4 +1,4 @@
-class ProjectControllers < ApplicationController
+class ProjectController < ApplicationController
 
 
 
