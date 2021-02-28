@@ -1,22 +1,23 @@
 <h1>"Relion Client Management"</h1>
- <form action="/signup" method="POST">
-    <h3>Don't have an account?</h3> 
-    <input type="submit" value="User Join">
-  </form><br/>
 
-  <form action="/manager/new" method="POST">
-    <input type="submit" value="Manager Join">
-  </form><br/>
 
-  <form action="/users/login" method="POST">
-    <h3>Already have an account?</h3> 
-    <input type="submit" value="User Login">
-  </form><br/>
 
-    <form action="/manager/login" method="POST">
-    <input type="submit" value="Manager Login">
-  </form><br/>
 
- 
 
- 
+<form action="/users/create_user" method="GET">
+  <h3>Don't have an account?</h3> 
+  <input type="submit" value="User Join">
+</form><br/>
+
+<form action="/manager/new" method="GET">
+  <input type="submit" value="Manager Join">
+</form><br/>
+
+<form action="/users/login" method="GET">
+  <h3>Already have an account?</h3> 
+  <input type="submit" value="User Login">
+</form><br/>
+
+<form action="/manager/login" method="GET">
+  <input type="submit" value="Manager Login">
+</form>
