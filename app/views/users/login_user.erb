@@ -1,78 +1,143 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple login form</title>
+    <title>Contact us</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <style>
-      html, body {
-      display: flex;
-      justify-content: center;
-      font-family: Roboto, Arial, sans-serif;
-      font-size: 15px;
-      }
-      form {
-      border: 5px solid #f1f1f1;
-      }
-      input[type=text], input[type=password] {
-      width: 100%;
-      padding: 16px 8px;
-      margin: 8px 0;
-      display: inline-block;
-      border: 1px solid #ccc;
+      * {
       box-sizing: border-box;
       }
-      button {
-      background-color: #4286f4;
-      color: white;
-      padding: 14px 0;
-      margin: 10px 0;
-      border: none;
-      cursor: grabbing;
-      width: 100%;
+      html, body {
+      min-height: 100vh;
+      padding: 0;
+      margin: 0;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px; 
+      color: #666;
+      }
+      input, textarea { 
+      outline: none;
+      }
+      body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: #68B0CF;
       }
       h1 {
-      text-align:center;
-      fone-size:18;
+      margin-top: 0;
+      font-weight: 500;
+      }
+      form {
+      position: relative;
+      width: 80%;
+      border-radius: 30px;
+      background: #fff;
+      }
+      .form-left-decoration,
+      .form-right-decoration {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 20px;
+      border-radius: 20px;
+      background: #68B0CF;
+      }
+      .form-left-decoration {
+      bottom: 60px;
+      left: -30px;
+      }
+      .form-right-decoration {
+      top: 60px;
+      right: -30px;
+      }
+      .form-left-decoration:before,
+      .form-left-decoration:after,
+      .form-right-decoration:before,
+      .form-right-decoration:after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 20px;
+      border-radius: 30px;
+      background: #fff;
+      }
+      .form-left-decoration:before {
+      top: -20px;
+      }
+      .form-left-decoration:after {
+      top: 20px;
+      left: 10px;
+      }
+      .form-right-decoration:before {
+      top: -20px;
+      right: 0;
+      }
+      .form-right-decoration:after {
+      top: 20px;
+      right: 10px;
+      }
+      .circle {
+      position: absolute;
+      bottom: 80px;
+      left: -55px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      }
+      .form-inner {
+      padding: 40px;
+      }
+      .form-inner input,
+      .form-inner textarea {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 20px;
+      background: #d0dfe8;
+      }
+      .form-inner textarea {
+      resize: none;
+      }
+      button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 20px;
+      border: none;
+      border-bottom: 4px solid #68B0CF;
+      background: #07579B; 
+      font-size: 16px;
+      font-weight: 400;
+      color: #fff;
       }
       button:hover {
-      opacity: 0.8;
+      background: #3ABB08;
+      } 
+      @media (min-width: 568px) {
+      form {
+      width: 60%;
       }
-      .formcontainer {
-      text-align: left;
-      margin: 24px 50px 12px;
-      }
-      .container {
-      padding: 16px 0;
-      text-align:left;
-      }
-      span.psw {
-      float: right;
-      padding-top: 0;
-      padding-right: 15px;
-      }
-      /* Change styles for span on extra small screens */
-      @media screen and (max-width: 300px) {
-      span.psw {
-      display: block;
-      float: none;
       }
     </style>
   </head>
   <body>
     <form action="/user/login" method="POST">
+      <div class="form-left-decoration"></div>
+      <div class="form-right-decoration"></div>
+      <div class="circle"></div>
+      <div class="form-inner">
       <h1>Client Login</h1>
-      <div class="formcontainer">
-      <hr/>
-      <div class="container">
-        <label for="name"><strong>Name</strong></label>
+       <label for="name"><strong>Name</strong></label>
         <input type="text" placeholder="Enter Username" name="user_name" required>
         <label for="password"><strong>Password</strong></label>
         <input type="password" placeholder="Enter Password" name="password" required>
-      </div>
       <button type="submit">Login</button>
-      
+      </div>
     </form>
   </body>
 </html>
-
- 

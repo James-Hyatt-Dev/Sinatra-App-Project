@@ -17,17 +17,19 @@
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
-  }
+   }
 
   .wrapper {
-    background: whitesmoke;
-    -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
+      -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
     box-shadow: 11px 11px 14px 6px rgb(0 0 0 / 30%);
     margin: 16px auto;
-    max-width: 960px;
+    max-width: 800px;
     padding: 2.25%; /* 18px / 800px */
     width: 85%;
+    border-radius: 35px;
+    text-align: left;  
+     
   }
 
   h1 {
@@ -56,7 +58,7 @@
   }
 
   .content {
-    float: left;
+    float: center;
     width: 60%; /* 480px / 800px */
   }
 
