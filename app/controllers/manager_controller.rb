@@ -8,22 +8,24 @@ class ManagerController < ApplicationController
     
 
     get '/manager/signup' do
-
+        
         if !logged_in?
           erb :'managers/create_manager', locals: {message: "Please sign up before you sign in"}
         else
-          redirect to '/show_project'
+          erb :'projects/projects'
         end
     end
 
     post '/manager/signup' do
         if params[:user_name] == "" || params[:email] == "" || params[:password] == ""
+          
           redirect to '/manager/signup'
         else
-          @manager = Manager.new(:user_name => params[:user_name], :email => params[:email], :password => params[:password])
+          @manager = Manager.new(:user_name => params[:user_name], :email => params[:email], :password => params[:password], :name => params[:name])
           @manager.save
           session[:manager_id] = @manager.id
-          redirect to '/hell'
+          
+          redirect to '/projects/projects'
         end
     end
 

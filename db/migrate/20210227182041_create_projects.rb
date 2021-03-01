@@ -5,7 +5,7 @@ class CreateProjects < ActiveRecord::Migration[6.1]
       p.string :name
       p.string :content
       p.string :task_list
-      p.integer :client_id
+      p.integer :user_id
       p.integer :manager_id
     end
   end

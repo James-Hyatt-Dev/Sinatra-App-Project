@@ -131,11 +131,15 @@
       <div class="form-right-decoration"></div>
       <div class="circle"></div>
       <div class="form-inner">
-        <h1>Create Project for Client XXX</h1>
-        <input type="text" placeholder="Project Name">
-        <input type="text" placeholder="Task">
-        <textarea placeholder="Task Details..." rows="10"></textarea>
-        <button type="submit" href="/">Create Project</button>
+        <h1>Create Project for [DROPDOWN LIST HERE]</h1>
+
+        <input type="text" placeholder="Project Name" name="name" required>
+
+        <input type="text" placeholder="Task" name="task_list" required>
+
+        <textarea placeholder="Content..." rows="5"></textarea name="content" required>
+
+        <button type="submit" href="/">Submit</button>
       </div>
     </form>
   </body>
