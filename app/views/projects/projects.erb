@@ -1,0 +1,8 @@
+<p> Welcome, <%= @user.user_name %>
+<h2> Projects </h2>
+
+<% @projects.each do |project| %>
+  <div>
+    <%= project.content %>
+  </div>
+<% end %>

@@ -1,10 +1,10 @@
 class UserController < ApplicationController
 
-    # get '/users/:slug' do
+    get '/users/:slug' do
         
-    #   @user = User.find_by_slug(params[:slug])
-    #   erb :'users/show_user'
-    # end
+      @user = User.find_by_slug(params[:slug])
+      erb :'users/show_user'
+    end
     
 
     get '/user/signup' do
@@ -24,7 +24,8 @@ class UserController < ApplicationController
           @user = User.new(:user_name => params[:user_name], :email => params[:email], :password => params[:password])
           @user.save
           session[:user_id] = @user.id
-          redirect to '/hell'
+          binding.pry
+          erb :'projects/projects'
         end
     end
 
@@ -33,7 +34,7 @@ class UserController < ApplicationController
         if !logged_in?
           erb :'users/login_user'
         else
-          redirect to '/show_project'
+            erb :'projects/projects'
         end
     end
 
@@ -43,7 +44,7 @@ class UserController < ApplicationController
         
         if user && user.authenticate(params[:password])
           session[:user_id] = user.id
-          redirect to "/show_project"
+          erb :'projects/projects'
         else
           redirect to '/user/signup'
         end

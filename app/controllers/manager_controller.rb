@@ -2,7 +2,6 @@ class ManagerController < ApplicationController
 
     
     get '/managers/:slug' do
-        binding.pry
       @user = Manager.find_by_slug(params[:slug])
       erb :'managers/show'
     end
