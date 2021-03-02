@@ -2,7 +2,7 @@ class ProjectController < ApplicationController
 
     get '/projects/manager' do
         if manager_logged_in?
-            @projects.find_by_id(params[:id])
+            Project.find_by_id(params[:id])
         else 
             erb :'/index'
         end
@@ -12,7 +12,7 @@ class ProjectController < ApplicationController
         if !manager_logged_in?
             erb :'managers/login'
         else
-            @users = User.all
+            @clients = Clients.all
             erb :'projects/create'
         end
     end
@@ -22,15 +22,15 @@ class ProjectController < ApplicationController
             if params[:content] == ""
                 erb :'projects/create'
             else
-                @project = current_manager.project.build(content: params[:contect], name: params[:name], task: params[:task_list])
+                @project = current_manager.project.build(content: params[:content], name: params[:name], task: params[:task_list])
                 if @project.save
-                    redirect to "/project/#{project.id}"
+                    redirect to "/projects/#{project.id}"
                 else
                     erb :'projects/create'
                 end
             end
         else
-            erb :'/'
+            erb :'/index'
         end
     end
 
@@ -42,13 +42,13 @@ class ProjectController < ApplicationController
 
     post '/projects/create' do
         
-        project = Project.find_by(:name => params[:name])
+        project = Project.find_by(:id => params[:id])
 
-        if project && project.authenticate(params[:name])
+        if project && project.authenticate(params[:password])
             session[:name] = project.name
             erb :'projects/manager'
         else
-            redirect to '/manager/signup'
+            redirect to '/managers/signup'
         end
 
     end

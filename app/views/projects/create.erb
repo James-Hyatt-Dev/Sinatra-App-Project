@@ -135,9 +135,9 @@
 
  
  
-   <label for="Users">Choose your client:</label>
+   <label for="Users">Choose the client:</label>
   <select name="cars" id="cars">
-<% @users.each do |p|%>
+<% @clients.each do |p|%>
         <option value="<%=p.id%>"><%=p.name%></option>
     <%end%>
 

@@ -2,7 +2,7 @@ require './config/environment'
  
 
 use Rack::MethodOverride
-use UserController
+use ClientController
 use ProjectController
 use ManagerController
 

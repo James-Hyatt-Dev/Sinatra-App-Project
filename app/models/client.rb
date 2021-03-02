@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class Client < ActiveRecord::Base
 
     has_secure_password
 
