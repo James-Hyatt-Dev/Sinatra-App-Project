@@ -1,12 +1,5 @@
 class ManagerController < ApplicationController
 
-    
-  get '/managers/:slug' do
-    manager = Manager.find_by_slug(params[:slug])
-    erb :'projects/manager'
-  end
-    
-
   get '/managers/signup' do
       
     if !manager_logged_in?
@@ -24,8 +17,7 @@ class ManagerController < ApplicationController
       manager.save
       
       session[:manager_id] = manager.id
-      binding.pry
-      
+       
       redirect to '/managers/login'
     end
   end
@@ -34,7 +26,7 @@ class ManagerController < ApplicationController
     if !manager_logged_in?
       erb :'managers/login'
     else
-      redirect to :'/projects/manager'
+      erb :'projects/manager'
     end
   end
 
@@ -43,19 +35,9 @@ class ManagerController < ApplicationController
     if manager && manager.authenticate(params[:password])
       
       session[:manager_id] = manager.id
-      
       redirect to '/projects/manager'
     else
       redirect to '/managers/signup'
-    end
-  end
-
-  get '/managers/logout' do
-    if manager_logged_in?
-      session.destroy
-      redirect to '/managers/login'
-    else
-      redirect to '/index'
     end
   end
 
@@ -66,6 +48,11 @@ class ManagerController < ApplicationController
     else
         redirect to '/'
     end
+  end
+
+  get '/managers/:slug' do
+    manager = Manager.find_by_slug(params[:slug])
+    erb :'projects/manager'
   end
 
 

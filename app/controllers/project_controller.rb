@@ -9,10 +9,11 @@ class ProjectController < ApplicationController
     end
 
     get '/projects/create' do
+        binding.pry
         if !manager_logged_in?
             erb :'managers/login'
         else
-            @clients = Clients.all
+            @clients = Client.all
             erb :'projects/create'
         end
     end
@@ -22,7 +23,7 @@ class ProjectController < ApplicationController
             if params[:content] == ""
                 erb :'projects/create'
             else
-                @project = current_manager.project.build(content: params[:content], name: params[:name], task: params[:task_list])
+                @project = current_manager.project.build(content: params[:content], name: params[:name], task: params[:task])
                 if @project.save
                     redirect to "/projects/#{project.id}"
                 else
@@ -30,8 +31,12 @@ class ProjectController < ApplicationController
                 end
             end
         else
-            erb :'/index'
+            erb :'/'
         end
+    end
+
+    def all_projects
+        @all_projects = Projects.all
     end
 
 
@@ -41,7 +46,7 @@ class ProjectController < ApplicationController
 
 
     post '/projects/create' do
-        
+        binding.pry
         project = Project.find_by(:id => params[:id])
 
         if project && project.authenticate(params[:password])

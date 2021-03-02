@@ -135,8 +135,8 @@
 
  
  
-   <label for="Users">Choose the client:</label>
-  <select name="cars" id="cars">
+   <label for="client">Choose the client:</label>
+  <select name="client" id="client_id">
 <% @clients.each do |p|%>
         <option value="<%=p.id%>"><%=p.name%></option>
     <%end%>
@@ -147,11 +147,11 @@
 
         <input type="text" placeholder="Project Name" name="name" required>
 
-        <input type="text" placeholder="Task" name="task_list" required>
+        <input type="text" placeholder="Task" name="task" required>
 
         <textarea placeholder="Content..." rows="5"></textarea name="content" required>
 
-        <button type="submit" href="/">Submit</button>
+        <button type="submit" href="/">Submit Project</button>
       </div>
     </form>
   </body>
