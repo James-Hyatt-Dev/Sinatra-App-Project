@@ -5,8 +5,9 @@ class Project < ActiveRecord::Base
 
     validates :name, presence: true
     validates :task, presence: true
-    validates :user_id, presence: true
-    validates :manager_id, presence: true
+    validates :content, presence: true
+
+
 
 
 

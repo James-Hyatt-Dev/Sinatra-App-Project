@@ -1,17 +1,16 @@
 class ManagerController < ApplicationController
 
-  get '/managers/signup' do
-      
+  get '/managers/new' do
     if !manager_logged_in?
-      erb :'managers/create' 
+      erb :'managers/new' 
     else
-      erb :'projects/manager'
+      erb :'projects/show'
     end
   end
 
-  post '/managers/signup' do
+  post '/managers/new' do
     if params[:user_name] == "" || params[:email] == "" || params[:password] == ""
-      redirect to '/managers/signup'
+      redirect to '/managers/new'
     else
       manager = Manager.new(:user_name => params[:user_name], :email => params[:email], :password => params[:password], :name => params[:name])
       manager.save
@@ -26,7 +25,8 @@ class ManagerController < ApplicationController
     if !manager_logged_in?
       erb :'managers/login'
     else
-      erb :'projects/manager'
+       
+      erb :'projects/show'
     end
   end
 
@@ -35,9 +35,9 @@ class ManagerController < ApplicationController
     if manager && manager.authenticate(params[:password])
       
       session[:manager_id] = manager.id
-      redirect to '/projects/manager'
+      redirect to '/projects/show'
     else
-      redirect to '/managers/signup'
+      redirect to '/managers/new'
     end
   end
 
@@ -52,7 +52,7 @@ class ManagerController < ApplicationController
 
   get '/managers/:slug' do
     manager = Manager.find_by_slug(params[:slug])
-    erb :'projects/manager'
+    erb :'projects/show'
   end
 
 

@@ -1,64 +1,38 @@
 class ProjectController < ApplicationController
 
-    get '/projects/manager' do
-        if manager_logged_in?
-            Project.find_by_id(params[:id])
-        else 
-            erb :'/index'
-        end
-    end
-
-    get '/projects/create' do
-        binding.pry
+    get '/projects/new' do
         if !manager_logged_in?
             erb :'managers/login'
         else
             @clients = Client.all
-            erb :'projects/create'
+            erb :'projects/new'
         end
     end
-
-    post '/projects/manager' do
+    
+    post '/projects/new' do
+        binding.pry
+        @project = Project.new(:name => params[:name], :task => params[:task], :content => params[:content], :client_id => params[:client_id])
+        @project.save
+        erb :'projects/show'
+    end
+ 
+    get '/projects/show' do
         if manager_logged_in?
-            if params[:content] == ""
-                erb :'projects/create'
-            else
-                @project = current_manager.project.build(content: params[:content], name: params[:name], task: params[:task])
-                if @project.save
-                    redirect to "/projects/#{project.id}"
-                else
-                    erb :'projects/create'
-                end
-            end
-        else
+            Project.find_by_id(params[:id])
+        else 
             erb :'/'
         end
     end
 
-    def all_projects
-        @all_projects = Projects.all
-    end
-
-
-
- 
-
-
-
-    post '/projects/create' do
-        binding.pry
+    post '/projects/show' do
+        if manager_logged_in?
         project = Project.find_by(:id => params[:id])
-
-        if project && project.authenticate(params[:password])
-            session[:name] = project.name
-            erb :'projects/manager'
-        else
-            redirect to '/managers/signup'
+            if project && project.authenticate(params[:password])
+                session[:name] = project.name
+                erb :'projects/manager'
+            else
+            redirect to '/managers/new'
+            end
         end
-
     end
-
-
-  
-
 end
