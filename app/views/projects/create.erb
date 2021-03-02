@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Contact us</title>
+    <title>Create Project</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <style>
       * {
       box-sizing: border-box;
-      }
+       }
       html, body {
       min-height: 100vh;
       padding: 0;
       margin: 0;
       font-family: Roboto, Arial, sans-serif;
       font-size: 14px; 
-      color: #666;
+      color: #07579b;
       }
       input, textarea { 
       outline: none;
@@ -23,7 +23,7 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      background: #68B0CF;
+      background: #dadada;
       }
       h1 {
       margin-top: 0;
@@ -126,17 +126,32 @@
     </style>
   </head>
   <body>
-    <form action="/user/login" method="POST">
+    <form action="/projects/create" class="POST">
       <div class="form-left-decoration"></div>
       <div class="form-right-decoration"></div>
       <div class="circle"></div>
       <div class="form-inner">
-      <h1>Client Login</h1>
-       <label for="username"><strong>Username</strong></label>
-        <input type="text" placeholder="Enter Username" name="user_name" required>
-        <label for="password"><strong>Password</strong></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
-      <button type="submit">Login</button>
+        <h1>Create Project</h1>
+
+ 
+ 
+   <label for="Users">Choose your client:</label>
+  <select name="cars" id="cars">
+<% @users.each do |p|%>
+        <option value="<%=p.id%>"><%=p.name%></option>
+    <%end%>
+
+  </select>
+  <br><br>
+
+
+        <input type="text" placeholder="Project Name" name="name" required>
+
+        <input type="text" placeholder="Task" name="task_list" required>
+
+        <textarea placeholder="Content..." rows="5"></textarea name="content" required>
+
+        <button type="submit" href="/">Submit</button>
       </div>
     </form>
   </body>

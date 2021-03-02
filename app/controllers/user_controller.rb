@@ -3,23 +3,21 @@ class UserController < ApplicationController
     get '/users/:slug' do
         
       @user = User.find_by_slug(params[:slug])
-      erb :'projects/user_projects'
+      erb :'projects/user'
     end
     
 
     get '/user/signup' do
-         if !user_logged_in?
-          binding.pry
-
-          erb :'users/create_user', locals: {message: "Please sign up before you sign in"}
+        if !user_logged_in?
+            erb :'users/create', locals: {message: "Please sign up before you sign in"}
         else
-          binding.pry
+          
           erb :'users/user_project'
         end
     end
 
     post '/user/signup' do
-      binding.pry
+      
 
          if params[:user_name] == "" || params[:email] == "" || params[:password] == "" || params[:name] == ""
           redirect to '/user/signup'
@@ -27,17 +25,17 @@ class UserController < ApplicationController
           @user = User.new(:user_name => params[:user_name], :email => params[:email], :password => params[:password], :name => params[:name])
           @user.save
           session[:user_id] = @user.id
-          binding.pry
-          erb :'projects/manager_projects'
+          
+          erb :'projects/user'
         end
     end
 
     get '/user/login' do
         
         if !user_logged_in?
-          erb :'users/login_user'
+          erb :'users/login'
         else
-            erb :'projects/user_projects'
+            erb :'projects/user'
         end
     end
 
@@ -48,7 +46,7 @@ class UserController < ApplicationController
         if user && user.authenticate(params[:password])
           session[:user_id] = user.id
           
-          erb :'projects/user_projects'
+          erb :'projects/user'
         else
           redirect to '/user/signup'
         end
@@ -62,6 +60,7 @@ class UserController < ApplicationController
             redirect to '/'
         end
     end
+
 
 
     

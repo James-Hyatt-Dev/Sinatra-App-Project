@@ -13,9 +13,10 @@
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: #68B0CF;
-    color: #333;
+    background-color: #dadada;
+    color: #07579B;
     font-family: Sans-Serif;
+    
     line-height: 18px;
     }
 
@@ -24,11 +25,11 @@
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
     box-shadow: 11px 11px 14px 6px rgb(0 0 0 / 30%);
     margin: 16px auto;
-    max-width: 800px;
+    max-width: 1180px;
     padding: 2.25%; /* 18px / 800px */
     width: 85%;
     border-radius: 35px;
-    text-align: left;  
+    text-align: justify;  
       
   }
 
@@ -58,7 +59,7 @@
   }
 
   .content {
-    float: center;
+    float: left;
     width: 60%; /* 480px / 800px */
   }
 

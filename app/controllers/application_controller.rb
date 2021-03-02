@@ -12,6 +12,7 @@ class ApplicationController < Sinatra::Base
   get "/" do
     erb :index
   end
+
   
   helpers do
 
@@ -28,8 +29,10 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_manager
-      @current_manager ||= Manager.find_by(name: session[:name]) if session[:name]
+      @current_manager ||= Manager.find_by(id: session[:manager_id]) if session[:manager_id]
     end
+
+   
    
   end
 

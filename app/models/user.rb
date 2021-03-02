@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
     belongs_to :projects
 
     def slug
-        username.downcase.gsub(" ","-")
+        user_name.downcase.gsub(" ","-")
     end
     
     def self.find_by_slug(slug)

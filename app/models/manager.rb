@@ -6,7 +6,7 @@ class Manager < ActiveRecord::Base
     has_many :projects, through: :clients
 
     def slug
-        username.downcase.gsub(" ","-")
+        user_name.downcase.gsub(" ","-")
     end
     
     def self.find_by_slug(slug)
