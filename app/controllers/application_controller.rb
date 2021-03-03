@@ -6,31 +6,21 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "relion_secret"
+    set :session_secret, "sinatra_project"
   end
 
-  get "/" do
+  get '/' do
     erb :index
   end
 
-  
   helpers do
 
-    def client_logged_in?
-      !!current_client  
+    def logged_in?
+      !!current_user
     end
 
-    def current_client
-      @current_client ||= Client.find_by(id: session[:client_id]) if session[:client_id] 
-    end
-
-    def manager_logged_in?
-      !!current_manager
-    end
-
-    def current_manager
-      @current_manager ||= Manager.find_by(id: session[:manager_id]) if session[:manager_id]
+    def current_user
+      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
     end
   end
-
 end
