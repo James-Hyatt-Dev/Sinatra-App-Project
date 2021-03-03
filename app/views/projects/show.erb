@@ -2,21 +2,12 @@
 <html>
 <body>
 
-<%if !!@current_manager%>
-<h1>Welcome, <%= @current_manager.user_name %>!</h1>
-<h4><a href="/projects/new">Create a new project</a></h4>
+ <h4><a href="/projects/new">Create a new project</a></h4>
 <h3>Here are your projects:</h3>
 
 
 
-<ol>
-  <li>One</li>
-  <li>Two</li>
-  <li>Three</li>
-  <li>Four</li>
-</ol>
 
-<%else%>
 
 <p><a href="/managers/logout">Logout</a> <br/></p>
 
@@ -24,25 +15,15 @@
 </html>
 
 
-###
-
+ 
 <!DOCTYPE html>
 <html>
 <body>
 
 <h1>Welcome, <%=  %></h1>
-<h2>Your manager is : XXX</h2>
-<h3>Your projects:</h3>
-<ol>
-  <li>One</li>
-  <li>Two</li>
-  <li>Three</li>
-  <li>Four</li>
-</ol>
 
 
 
-<p><a href="/clients/logout">Logout</a> <br/></p>
-<%end%>
-</body>
+<p><a href="/clients/logout">Client Logout</a> <br/></p>
+ </body>
 </html>

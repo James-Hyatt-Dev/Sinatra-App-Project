@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_221055) do
-
-  create_table "clients", force: :cascade do |t|
-    t.string "user_name"
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
-    t.integer "manager_id"
-  end
+ActiveRecord::Schema.define(version: 2021_03_03_161024) do
 
   create_table "managers", force: :cascade do |t|
     t.string "user_name"
@@ -31,7 +23,6 @@ ActiveRecord::Schema.define(version: 2021_03_02_221055) do
     t.string "name"
     t.string "content"
     t.string "task"
-    t.integer "client_id"
     t.integer "manager_id"
   end
 

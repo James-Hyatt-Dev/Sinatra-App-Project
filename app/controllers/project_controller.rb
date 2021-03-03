@@ -13,7 +13,7 @@ class ProjectController < ApplicationController
         binding.pry
         @project = Project.new(:name => params[:name], :task => params[:task], :content => params[:content], :client_id => params[:client_id])
         @project.save
-        erb :'projects/show'
+        redirect to '/projects/show'
     end
  
     get '/projects/show' do
@@ -29,7 +29,7 @@ class ProjectController < ApplicationController
         project = Project.find_by(:id => params[:id])
             if project && project.authenticate(params[:password])
                 session[:name] = project.name
-                erb :'projects/manager'
+                redirect to '/projects/show'
             else
             redirect to '/managers/new'
             end

@@ -31,16 +31,6 @@ class ApplicationController < Sinatra::Base
     def current_manager
       @current_manager ||= Manager.find_by(id: session[:manager_id]) if session[:manager_id]
     end
-
-    def all_projects
-      @all_projects = Projects.all
-    end
-
-   
-   
   end
 
-  
-
-  
 end

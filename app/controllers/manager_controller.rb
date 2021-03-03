@@ -1,5 +1,11 @@
 class ManagerController < ApplicationController
 
+  
+  get '/managers/:slug' do
+    manager = Manager.find_by_slug(params[:slug])
+    erb :'projects/show'
+  end
+  
   get '/managers/new' do
     if !manager_logged_in?
       erb :'managers/new' 
@@ -9,9 +15,11 @@ class ManagerController < ApplicationController
   end
 
   post '/managers/new' do
+    binding.pry
     if params[:user_name] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/managers/new'
     else
+      binding.pry
       manager = Manager.new(:user_name => params[:user_name], :email => params[:email], :password => params[:password], :name => params[:name])
       manager.save
       
@@ -50,10 +58,7 @@ class ManagerController < ApplicationController
     end
   end
 
-  get '/managers/:slug' do
-    manager = Manager.find_by_slug(params[:slug])
-    erb :'projects/show'
-  end
+  
 
 
 end
