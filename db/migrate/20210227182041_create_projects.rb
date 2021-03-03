@@ -4,8 +4,8 @@ class CreateProjects < ActiveRecord::Migration[6.1]
     create_table :projects do |p|
       p.string :name
       p.string :content
-      p.string :task_list
-      p.integer :user_id
+      p.string :task 
+      p.integer :client_id
       p.integer :manager_id
     end
   end

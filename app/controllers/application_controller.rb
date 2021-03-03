@@ -10,7 +10,37 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :index
+     erb :index
+   end
+
+  
+  helpers do
+
+    def client_logged_in?
+      !!current_client  
+    end
+
+    def current_client
+      @current_client ||= Client.find_by(id: session[:client_id]) if session[:client_id] 
+    end
+
+    def manager_logged_in?
+      !!current_manager
+    end
+
+    def current_manager
+      @current_manager ||= Manager.find_by(id: session[:manager_id]) if session[:manager_id]
+    end
+
+    def all_projects
+      @all_projects = Projects.all
+    end
+
+   
+   
   end
 
+  
+
+  
 end

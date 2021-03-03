@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Create Project</title>
+    <title>Contact us</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <style>
       * {
@@ -34,6 +34,7 @@
       width: 80%;
       border-radius: 30px;
       background: #fff;
+  
       }
       .form-left-decoration,
       .form-right-decoration {
@@ -126,33 +127,27 @@
     </style>
   </head>
   <body>
-    <form action="/projects/new" method="POST">
+ 
+    <form action="/clients/new" method="POST">
       <div class="form-left-decoration"></div>
       <div class="form-right-decoration"></div>
       <div class="circle"></div>
       <div class="form-inner">
-        <h1>Create Project</h1>
+       <h1>CLIENT SIGN UP</h1>
 
- 
- 
-  <label for="Clients">Choose the client:</label>
-  <select name="client_id" id="client_id">
+       <label for="user_name"><strong>Username</strong></label>
+        <input type="text" placeholder="Enter Username" name="user_name" required>
 
- <% @clients.each do |p|%>
-        <option value="<%=p.id%>"><%=p.name%></option>
-          <%end%>
-   </select><br><br>
+        <label for="name"><strong>Name</strong></label>
+        <input type="text" placeholder="Enter Name" name="name" required>
 
 
-
-        <input type="text" placeholder="Project Name" name="name" required>
-
-        <input type="text" placeholder="Task" name="task" required>
-
-        <textarea name="content" rows="5" placeholder="Content..."></textarea> 
-
-        <button type="submit">Submit Project</button>
+        <label for="email"><strong>E-mail</strong></label>
+        <input type="text" placeholder="Enter E-mail" name="email" required>
+        <label for="password"><strong>Password</strong></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+      <button type="submit"><strong>SIGN UP</strong></button>
       </div>
     </form>
-  </body>
+   </body>
 </html>
