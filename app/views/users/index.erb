@@ -1,0 +1,7 @@
+<h2 class="welcome">All Users!</h2>
+
+<a href="/logout" class="logout">Log Out</a>
+
+<%@users.each do |user|%>
+<h3 class="user_list"><a href="/users/<%=user.slug%>"><%=user.username.titleize%></a></h3>
+<%end%>
