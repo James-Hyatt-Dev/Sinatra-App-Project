@@ -2,17 +2,15 @@ class ProjectController < ApplicationController
 
     get '/projects' do
         if manager_logged_in?  
-            if @projects = Project.all
-                redirect to '/projects/projects'
-            else 
-                redirect to '/managers/login'
-            end
+            @projects = Project.all
+            erb :'projects/show'
+        elsif 
+            redirect to '/managers/login'
         elsif client_logged_in?
-            if @projects = Project.all
-                redirect to '/projects/projects'
-            else
-                redirect to '/clients/login'
-            end
+            @projects = Project.all
+            erb :'projects/show'
+        else
+            redirect to '/clients/login'
         end
     end
 
