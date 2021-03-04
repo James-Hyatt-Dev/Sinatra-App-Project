@@ -8,7 +8,13 @@ class Project < ActiveRecord::Base
     validates :content, presence: true
 
 
-
+    def slug
+        user_name.downcase.gsub(" ","-")
+    end
+    
+    def self.find_by_slug(slug)
+        Project.all.find{|project| project.slug == slug}
+    end
 
 
 end

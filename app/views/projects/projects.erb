@@ -1,1 +1,15 @@
-hello prpjects here
+<%if current_manager%>
+<h1>Hello <%= current_manager %>!</h1>
+
+<%Project.all do each |p|%>
+<%=p.name%>
+<%end%>
+
+
+
+<%if current_client%>
+<h1>Hello <%= current_client %>!</h1>
+
+<%Project.all do each |p|%>
+<%=p.name%>
+<%end%>

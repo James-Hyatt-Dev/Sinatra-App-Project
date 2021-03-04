@@ -4,7 +4,7 @@ class ClientController < ApplicationController
         if !client_logged_in?
             erb :'clients/new' 
         else
-          erb :'projects/show'
+          redirect to '/projects'
         end
     end
   
@@ -12,11 +12,11 @@ class ClientController < ApplicationController
       if params[:user_name] == "" || params[:email] == "" || params[:password] == "" || params[:name] == ""
         redirect to '/client/new'
       else
-        @client = Client.new(:user_name => params[:user_name], :email => params[:email], :password => params[:password], :name => params[:name])
-        @client.save
-        session[:user_id] = @client.id
+        client = Client.new(:user_name => params[:user_name], :email => params[:email], :password => params[:password], :name => params[:name])
+        client.save
+        session[:client_id] = @client.id
   
-        erb :'projects/show'
+        erb :'projects'
       end
     end
   
@@ -25,17 +25,18 @@ class ClientController < ApplicationController
         if !client_logged_in?
           erb :'clients/login'
         else
-          erb :'projects/show'
+         redirect to '/projects'
         end
     end
   
     post '/clients/login' do
       client = Client.find_by(:user_name => params[:user_name])
         if client && client.authenticate(params[:password])
-          session[:user_id] = client.id
-          erb :'projects/show'
+          session[:client_id] = client.id
+          projects = Project.all
+          redirect to '/projects'
         else
-          redirect to '/clients/new'
+          redirect to '/clients/login'
         end
     end
   
@@ -47,6 +48,11 @@ class ClientController < ApplicationController
             redirect to '/'
         end
     end
+
+    get '/clients/:slug' do
+        client = Client.find_by_slug(params[:slug])
+        erb :'projects'
+      end
     
   end
   

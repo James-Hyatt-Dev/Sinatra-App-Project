@@ -4,7 +4,7 @@
     <title>Contact us</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <style>
-       * {
+      * {
       box-sizing: border-box;
        }
       html, body {
@@ -116,7 +116,7 @@
       color: #fff;
       }
       button:hover {
-      background: #3e4f24;
+      background: #3ABB08;
       } 
       @media (min-width: 568px) {
       form {
@@ -126,23 +126,28 @@
     </style>
   </head>
   <body>
-    <form action="/projects/<%=@project.id%>" method="POST">
+
+    <form action="/managers/login" method="POST">
       <div class="form-left-decoration"></div>
       <div class="form-right-decoration"></div>
       <div class="circle"></div>
       <div class="form-inner">
+ 
+<% @projects.each do |p| %>
+<h1>Edit Project for <%=p.name%></h1>
 
-      <h1>Edit Project "<%= @project.name %></h1>
+<label for="name"><strong>Name</strong></label>
+ <input type="text" id="name" name="name" value="<%=p.name%>"> 
+<label for="task"><strong>Task</strong></label>
+ <input type="text" id="task" name="task" value="<%=p.task%>"> 
 
-        <input id="hidden" type="hidden" name="_method" value="PATCH">
-  <input type="text" name="name" value="<%= @project.name %>">
-  <input type="text" name="task" value="<%= @project.task %>">
-  <input type="text" name="content" value="<%= @project.content %>">
+<label for="comment"><strong>Comment</strong></label>
+<textarea id="comment" name="comment" rows="5"><%=p.comment%></textarea>
 
 
-
-
-      <button type="submit"><strong>SIGN UP</strong></button>
+ 
+      <button type="submit">Update</button>
+<%end%>
       </div>
     </form>
   </body>

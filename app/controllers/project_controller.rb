@@ -1,20 +1,51 @@
 class ProjectController < ApplicationController
 
     get '/projects' do
-        if manager_logged_in? || client_logged_in?
-            @projects = Project.all
-            erb :'projects/projects'
-        else
-            redirect to '/manager/login/'
+        if manager_logged_in?  
+            if @projects = Project.all
+                redirect to '/projects/projects'
+            else 
+                redirect to '/managers/login'
+            end
+        elsif client_logged_in?
+            if @projects = Project.all
+                redirect to '/projects/projects'
+            else
+                redirect to '/clients/login'
+            end
         end
     end
 
     get '/projects/new' do
-        if manager_logged_in? || client_logged_in?
+        if logged_in?
+            @clients = Client.all
             erb :'projects/new'
         else
-            redirect to '/index'
+            redirect to '/'
         end
+    end
+
+    post '/projects/new' do
+        if params[:name] == "" || params[:task] == "" || params[:content] == ""
+            redirect to '/projects/new'
+        elsif  
+            project = Project.new(:name =>params[:name], :task => params[:task], :content => params[:content], :client_id => params[:client_id])
+            project.manager_id = session[:manager_id] 
+            project.save
+            @projects = Project.all
+            @managers = Manager.all
+            @clients = Client.all
+            redirect to '/projects/projects'
+        elsif
+            if !manager_logged_in?
+                redirect to '/managers/login'
+            end
+        elsif
+            if !client_logged_in?
+                redirect to '/clients/login'
+            end
+        end
+        
     end
 
     post '/projects' do
@@ -22,12 +53,12 @@ class ProjectController < ApplicationController
             if params[:content] == "" || params[:task] == "" || params[:name] == ""
                 redirect to '/projects/new'
             else
-                binding.pry
-                @project = current_manager.projects.build(content: params[:content], task: params[:task], name: params[:name])
+                
+                @project = current_manager.projects.build(content: params[:content], task: params[:task], name: params[:name], client_id: params[:client_id])
                 if @project.save
                     redirect to "/projects/#{@project.id}"
                 else
-                    redirect to 'projects/new'
+                    redirect to '/projects/new'
                 end
             end
         else
@@ -35,16 +66,22 @@ class ProjectController < ApplicationController
         end
     end
 
-    get 'projects/:id/edit' do
-        if manager_logged_in || client_logged_in?
+    get '/projects/:id' do
+        @project = Project.find_by_id(params[:id])
+        redirect to '/projects'
+    end
+
+
+    get '/projects/:id/edit' do
+        if logged_in?
             @project = Project.find_by_id(params[:id])
             if @project && @project.manager == current_manager
-                erb :'project/edit'
+                erb :'projects/edit'
             else
                 redirect to '/projects'
             end
         else
-            redirect to '/index'
+            redirect to '/'
         end
     end
 

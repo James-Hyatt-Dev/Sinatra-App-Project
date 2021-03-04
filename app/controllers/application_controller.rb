@@ -36,6 +36,11 @@ class ApplicationController < Sinatra::Base
       @all_projects = Projects.all
     end
 
+    def logged_in? 
+      !!current_client || !!current_manager
+    end
+
+
    
    
   end
